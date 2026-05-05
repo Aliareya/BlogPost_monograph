@@ -51,7 +51,7 @@ const CommentsSection = ({ postId , post_name }) => {
 
     try {
       const res = await axios.post(
-        "https://areyatest.app.n8n.cloud/webhook/comment",
+        "https://areyatest.app.n8n.cloud/webhook-test/comment",
         {
           user_name: data.name,
           user_comment: data.message,

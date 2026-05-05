@@ -187,7 +187,7 @@ export const Posts = () => {
 
   if (loading) {
     return (
-      <p className="text-center py-20 text-gray-500">Loading posts...</p>
+      <p className="text-center py-20 text-gray-500 h-[400px] flex justify-center items-center">Loading posts...</p>
     );
   }
 

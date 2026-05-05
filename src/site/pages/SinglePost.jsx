@@ -85,7 +85,7 @@ const SinglePost = () => {
     fetchPost(Number(id));
   }, []);
 
-  if (loading) return <p className="text-center">Loading...</p>;
+  if (loading) return <p className="text-center py-20 text-gray-500 h-[400px] flex justify-center items-center">Loading posts...</p>
 
   return (
     <div className="min-h-screen bg-white">
