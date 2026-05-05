@@ -51,7 +51,7 @@ const CommentsSection = ({ postId , post_name }) => {
 
     try {
       const res = await axios.post(
-        "https://areyatest.app.n8n.cloud/webhook-test/comment",
+        "https://areyatest.app.n8n.cloud/webhook/comment",
         {
           user_name: data.name,
           user_comment: data.message,
@@ -62,7 +62,6 @@ const CommentsSection = ({ postId , post_name }) => {
       );
 
       const check = res.data;
-      console.log(check)
 
       if(check.status === "ok"){
         const newComment = res.data;

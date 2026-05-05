@@ -2,16 +2,19 @@ import React, { useState, useEffect } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../config/Firebase";
 import CommentsSection from "../components/CommentSection";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 // Back
-const BackLink = () => (
-  <div className="max-w-4xl mx-auto px-4 pt-6">
-    <a className="text-sm text-gray-600 hover:text-black" href="#">
-      ← Back to Posts
-    </a>
-  </div>
-);
+const BackLink = () => {
+  const navigate = useNavigate()
+  return (
+    <div className="max-w-4xl mx-auto px-4 pt-6">
+      <span onClick={()=>navigate('/posts')} className="cursor-pointer text-sm text-gray-600 hover:text-black" href="/posts">
+        ← Back to Posts
+      </span>
+    </div>
+  )
+}
 
 // Header
 const PostHeader = ({ post }) => (
@@ -54,7 +57,7 @@ const PostContent = ({ content }) => (
 const SinglePost = () => {
   const [post, setPost] = useState(null);
   const [loading, setLoading] = useState(false);
-  const {id} = useParams()
+  const { id } = useParams()
 
   useEffect(() => {
     const fetchPost = async (postId) => {
