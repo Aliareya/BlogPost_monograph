@@ -2,6 +2,8 @@ import { useNavigate } from "react-router-dom";
 import { FaUser, FaTachometerAlt, FaSignOutAlt } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 import useAuthStore from "../../store/AuthStore";
+import logo from "../../assets/images/logo.png"
+import { Icon } from "@iconify/react";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -32,132 +34,104 @@ const Header = () => {
   }, []);
 
   return (
-    <nav className="bg-white z-50 border-b border-gray-100 sticky top-0">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
 
-          {/* Logo */}
-          <div className="flex items-center gap-2 cursor-pointer" onClick={() => navigate("/")}>
-            <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-              <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
-                  d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-              </svg>
-            </div>
-            <span className="text-xl font-serif font-semibold text-gray-900">
-              Inkwell
+    <header className="w-full bg-[#214252] sticky top-0 z-50 shadow-lg">
+      <div className="max-w-7xl mx-auto h-[70px] px-4 sm:px-6 lg:px-10 flex items-center justify-between">
+        {/* Logo */}
+        <div className="flex items-center gap-2 flex-shrink-0 cursor-pointer">
+          <img src={logo} alt="logo" className="w-12 h-12 object-contain" />
+          <span className="text-xl md:text-2xl font-semibold text-white italic">
+            AreyaPulse
+          </span>
+        </div>
+
+        {/* Menu */}
+        <nav className="hidden lg:flex items-center gap-8">
+          <a
+            href="#"
+            className="text-white font-semibold italic hover:text-slate-200 transition"
+          >
+            Home
+          </a>
+          <a
+            href="#"
+            className="text-white font-semibold italic hover:text-slate-200 transition"
+          >
+            Blogs
+          </a>
+          <a
+            href="#"
+            className="text-white font-semibold italic hover:text-slate-200 transition"
+          >
+            About
+          </a>
+          <a
+            href="#"
+            className="text-white font-semibold italic hover:text-slate-200 transition"
+          >
+            Contact
+          </a>
+        </nav>
+
+        {/* Right Side */}
+        <div className="flex items-center gap-3">
+          {/* Search Box */}
+          <div className="hidden md:flex items-center bg-white/10 border border-white/20 rounded-full px-4 h-9 backdrop-blur-md">
+            <Icon
+              icon="mdi:magnify"
+              width="20"
+              height="20"
+              className="text-white"
+            />
+            <input
+              type="text"
+              placeholder="Search blogs..."
+              className="bg-transparent outline-none px-2 text-white placeholder:text-slate-300 w-[180px] lg:w-[220px]"
+            />
+          </div>
+
+          {/* Login / Register */}
+          <div className="hidden md:flex gap-2">
+            <button className="bg-[linear-gradient(135deg,_#214252_0%,_#2E5666_35%,_#4A6B78_48%,_#D1D5DB_58%,_#F5F6F7_100%)] px-4 py-2 text-sm border border-white text-[#09222e] font-semibold rounded-md hover:opacity-90">
+              Login
+            </button>
+
+            <button className="bg-[linear-gradient(135deg,_#214252_0%,_#2E5666_35%,_#4A6B78_48%,_#D1D5DB_58%,_#F5F6F7_100%)] px-4 py-2 text-sm border border-white text-[#09222e] font-semibold rounded-md hover:opacity-90">
+              Register
+            </button>
+          </div>
+
+          {/* User */}
+          {/* <div className="flex items-center gap-2 cursor-pointer">
+            <span className="hidden sm:block text-white font-semibold italic">
+              Alireza
             </span>
-          </div>
 
-          {/* Navigation */}
-          <div className="hidden md:flex items-center space-x-5">
-            <span onClick={() => handleclick('/')} className="text-orange-600 cursor-pointer bg-orange-50 px-3 py-2 rounded-md text-sm font-medium">Home</span>
-            <span onClick={() => handleclick('/posts')} className="text-gray-600 cursor-pointer hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Posts</span>
-            <span onClick={() => handleclick('/about')} className="text-gray-600 cursor-pointer hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">About</span>
-            <span onClick={() => handleclick('/contact')} className="text-gray-600 cursor-pointer hover:text-gray-900 px-3 py-2 rounded-md text-sm font-medium">Contact</span>
-          </div>
+            <Icon
+              icon="bxs:down-arrow"
+              width="10"
+              height="10"
+              className="text-white hidden sm:block"
+            />
 
-          {/* Right Side */}
-          <div className="flex items-center gap-2 relative" ref={menuRef}>
+            <div className="w-10 h-10 rounded-full border border-white flex items-center justify-center bg-gradient-to-br from-[#214252] via-[#4A6B78] to-[#F5F6F7]">
+              <Icon
+                icon="heroicons:user-20-solid"
+                width="24"
+                height="24"
+                className="text-slate-500"
+              />
+            </div>
+          </div> */}
 
-            {/* ✅ AUTH CHECK */}
-
-            {loading ?
-              <div className="h-16 flex items-center justify-center">
-                <p className="text-gray-500 text-sm"></p>
-              </div>
-            :
-
-            user ? (
-              <>
-                {/* Trigger */}
-                <div
-                  onClick={() => setOpen(!open)}
-                  className="flex items-center gap-2 cursor-pointer"
-                >
-                  <span className="text-lg font-medium text-[#92400e]">
-                    {user?.name || "User"}
-                  </span>
-
-                  <div className="w-8 h-8 rounded-full bg-slate-200 text-[#92400e] border border-[#92400e] flex items-center justify-center text-sm font-semibold">
-                    {user?.name?.charAt(0) || "U"}
-                  </div>
-                </div>
-
-                {/* Dropdown */}
-                {open && (
-                  <div className="absolute right-0 top-12 w-52 bg-white rounded-xl shadow-xl border border-gray-200 overflow-hidden">
-
-                    {/* Header */}
-                    <div className="px-4 py-3 border-b bg-gray-50">
-                      <p className="text-sm font-semibold text-gray-800">
-                        {user?.name || "User"}
-                      </p>
-                      <p className="text-xs text-gray-500">
-                        {user?.email}
-                      </p>
-                    </div>
-
-                    {/* Menu */}
-                    <div className="py-2">
-
-                      <button
-                        onClick={() => handleclick('/admin/dashboard')}
-                        className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        <FaTachometerAlt />
-                        Dashboard
-                      </button>
-
-                      <button
-                        onClick={() => handleclick('/')}
-                        className="flex items-center gap-3 w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
-                      >
-                        <FaUser />
-                        Profile
-                      </button>
-
-                    </div>
-
-                    {/* Logout */}
-                    <div className="border-t py-2">
-                      <button
-                        onClick={() => {
-                          logout();
-                          navigate("/login");
-                        }}
-                        className="flex items-center gap-3 w-full px-4 py-2 text-sm text-red-500 hover:bg-red-50"
-                      >
-                        <FaSignOutAlt />
-                        Logout
-                      </button>
-                    </div>
-
-                  </div>
-                )}
-              </>
-            ) : (
-              <>
-                <button
-                  onClick={() => handleclick('/login')}
-                  className="bg-gray-200 hover:bg-orange-600 hover:text-white text-black px-4 py-2 rounded-lg text-sm font-medium"
-                >
-                  Login
-                </button>
-
-                <button
-                  onClick={() => handleclick('/signup')}
-                  className="bg-orange-500 hover:bg-orange-600 text-white px-4 py-2 rounded-lg text-sm font-medium"
-                >
-                  Signup
-                </button>
-              </>
-            )}
-
-          </div>
+          {/* Mobile Menu */}
+          <button className="lg:hidden text-white ml-2">
+            <Icon icon="mdi:menu" width="28" height="28" />
+          </button>
         </div>
       </div>
-    </nav>
+    </header>
+
   );
 };
 

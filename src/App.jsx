@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import Header from './site/layouts/Header'
-import Home from './site/pages/Home'
+import Home from './site/pages/home/Home'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { Posts } from './site/pages/Posts'
 import Footer from './site/layouts/Footer'
