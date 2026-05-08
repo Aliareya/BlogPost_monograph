@@ -1,9 +1,10 @@
 import { Icon } from "@iconify/react";
+import p1 from "../../../../assets/images/p1.jpg"
 
 export default function HeroSection() {
   return (
     <section className="w-full min-h-[90vh] bg-[linear-gradient(135deg,_#214252_0%,_#2E5666_35%,_#4A6B78_65%,_#D1D5DB_90%,_#F5F6F7_100%)] overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 py-10 grid lg:grid-cols-2 gap-14 items-center">
+      <div className="max-w-7xl mx-auto px-6 max-sm:px-3 lg:px-10 py-10 grid lg:grid-cols-2 gap-14 items-center">
         
         {/* Left */}
         <div>
@@ -83,7 +84,7 @@ export default function HeroSection() {
           {/* Main Card */}
           <div className="relative w-full max-w-md bg-white/20 backdrop-blur-xl border border-white/30 rounded-[30px] p-6 shadow-2xl">
             <img
-              src="https://images.unsplash.com/photo-1499750310107-5fef28a66643"
+              src={p1}
               alt=""
               className="w-full h-[280px] object-cover rounded-2xl"
             />

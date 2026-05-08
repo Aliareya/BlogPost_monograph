@@ -2,6 +2,7 @@ import CategoriesSection from "./sections/CategoriesSection";
 import FeaturedPosts from "./sections/FeaturedPosts";
 import HeroSection from "./sections/HeroSection"
 import LatestArticles from "./sections/LatestArticles";
+import NewsletterSection from "./sections/NewsletterSection";
 
 const Home = () =>{
   return (
@@ -10,6 +11,7 @@ const Home = () =>{
     <CategoriesSection/>
     <FeaturedPosts/>
     <LatestArticles/>
+    <NewsletterSection/>
     </>
     
   )
