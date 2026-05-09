@@ -1,8 +1,9 @@
 const CommentCard = ({ c }) => {
   const getInitial = (name) => name?.charAt(0).toUpperCase();
+  console.log(c)
 
   return (
-    <div className="bg-white shadow rounded-xl p-4 mb-4 border">
+    <div className="bg-[linear-gradient(-85deg,_#214252_0%,_#2E5666_35%,_#4A6B78_48%,_#D1D5DB_99%,_#F5F6F7_100%)] shadow rounded-xl p-4 mb-4 border">
 
       {/* USER COMMENT */}
       <div className="flex items-start gap-3 mb-3">
@@ -15,7 +16,7 @@ const CommentCard = ({ c }) => {
           <p className="font-semibold text-gray-800">
             {c?.name}
           </p>
-          <p className="text-gray-600 mt-1">
+          <p className="text-gray-50 mt-1">
             {c?.message}
           </p>
         </div>

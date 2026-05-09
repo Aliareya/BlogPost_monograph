@@ -6,8 +6,9 @@ import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../config/Firebase";
 import { toast } from "react-toastify";
 import useAuthStore from "../../store/AuthStore";
+import { Icon } from "@iconify/react";
 
-const CommentsSection = ({ postId , post_name }) => {
+const CommentsSection = ({ postId, post_name }) => {
   const { register, handleSubmit, reset } = useForm();
   const user = useAuthStore((state) => state.user);
 
@@ -22,28 +23,30 @@ const CommentsSection = ({ postId , post_name }) => {
 
       try {
         const q = query(collection(db, "comments"));
-
         const querySnapshot = await getDocs(q);
 
         const data = querySnapshot.docs.map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
+        console.log(data);
 
         setComments(
-          data.filter((item) => item.post_id === Number(postId) && item?.status === "published")
+          data.filter(
+            (item) =>
+              item.post_id === Number(postId) &&
+              item?.status === "published"
+          )
         );
-
-        return data;
       } catch (error) {
         console.log("Error fetching comments:", error);
       } finally {
         setLoading(false);
       }
     };
-    getComments();
 
-  }, []);
+    getComments();
+  }, [postId]);
 
   // SEND COMMENT
   const sendcomment = async (data) => {
@@ -51,30 +54,26 @@ const CommentsSection = ({ postId , post_name }) => {
 
     try {
       const res = await axios.post(
-        "https://areyatest.app.n8n.cloud/webhook-test/comment",
+        "https://areya.app.n8n.cloud/webhook-test/comment",
         {
           user_name: data.name,
           user_comment: data.message,
-          post_id : postId,
-          post_name : post_name,
-
+          post_id: postId,
+          post_name: post_name,
         }
       );
 
       const check = res.data;
+      console.log(check)
 
-      if(check.status === "ok"){
-        const newComment = res.data;
-        setComments((prev) => [...prev, newComment]);
-        toast.success(check.response_msg)
-
-      }else if(check.status === "error"){
-        toast.error(check.response_msg)
-      }else if(check.status === "pending"){
-        toast.info(check.response_msg)
+      if (check.status === "ok") {
+        setComments((prev) => [...prev, res.data]);
+        toast.success(check.response_msg);
+      } else if (check.status === "error") {
+        toast.error(check.response_msg);
+      } else if (check.status === "pending") {
+        toast.info(check.response_msg);
       }
-
-      // add to UI
     } catch (error) {
       console.log(error);
     } finally {
@@ -84,55 +83,66 @@ const CommentsSection = ({ postId , post_name }) => {
   };
 
   return (
-    <div className="max-w-4xl mx-auto px-4 py-10">
+    <div className="w-full ">
 
-      <h2 className="text-2xl font-bold mb-6">Comments</h2>
+      {/* HEADER */}
+      <div className="flex items-center justify-between mb-6">
+        <h2 className="text-2xl font-bold text-[#214252]">
+          Comments
+        </h2>
 
-      {/* LOADING COMMENTS */}
+        <span className="text-sm text-slate-500">
+          {comments.length} comments
+        </span>
+      </div>
+
+      {/* LOADING */}
       {loading && (
-        <p className="text-gray-500 mb-4 animate-pulse">
+        <p className="text-slate-500 mb-4 animate-pulse">
           Loading comments...
         </p>
       )}
 
       {/* COMMENTS LIST */}
-      <div className="space-y-4 mb-6">
+      <div className="space-y-4 mb-10">
         {comments?.map((c) => (
           <CommentCart key={c?.id} c={c} />
         ))}
       </div>
 
-      {/* AI TYPING INDICATOR */}
-      {sending && (
-        <p className="text-sm text-gray-500 mb-3 animate-pulse">
-          Checking your comment....
-        </p>
-      )}
-
-      {/* FORM */}
+      {/* FORM (GLASS STYLE) */}
       <form
         onSubmit={handleSubmit(sendcomment)}
-        className="bg-gray-50 p-4 rounded-xl"
+        className="bg-white/80 backdrop-blur-xl border border-white/30 rounded-[28px] p-6 shadow-xl"
       >
+        <h3 className="text-lg font-semibold text-[#214252] mb-4 flex items-center gap-2">
+          <Icon icon="solar:chat-round-dots-bold" width="20" />
+          Leave a Comment
+        </h3>
+
+        {/* NAME */}
         <input
           {...register("name", { required: true })}
-          className="w-full p-2 mb-2 border rounded"
+          className="w-full h-12 px-4 mb-3 rounded-xl border border-slate-200 outline-none focus:border-[#214252]"
           placeholder="Your name"
         />
 
+        {/* MESSAGE */}
         <textarea
           {...register("message", { required: true })}
-          className="w-full p-2 mb-2 border rounded"
-          placeholder="Write a comment..."
-          rows="3"
+          className="w-full p-4 mb-4 rounded-xl border border-slate-200 outline-none focus:border-[#214252] resize-none"
+          placeholder="Write your comment..."
+          rows="4"
         />
 
+        {/* BUTTON */}
         <button
           disabled={sending}
-          className={`px-4 py-2 rounded-full text-white ${sending
-            ? "bg-gray-400 cursor-not-allowed"
-            : "bg-orange-500"
-            }`}
+          className={`w-full h-12 rounded-xl font-semibold text-white transition ${
+            sending
+              ? "bg-slate-400 cursor-not-allowed"
+              : "bg-[#214252] hover:scale-[1.02]"
+          }`}
         >
           {sending ? "Sending..." : "Post Comment"}
         </button>
