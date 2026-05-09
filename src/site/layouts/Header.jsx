@@ -47,30 +47,26 @@ const Header = () => {
 
         {/* Menu */}
         <nav className="hidden lg:flex items-center gap-8">
-          <a
-            href="#"
-            className="text-white font-semibold italic hover:text-slate-200 transition"
+          <span onClick={()=>navigate('/')}
+            className="text-white cursor-pointer font-semibold italic hover:text-slate-200 transition"
           >
             Home
-          </a>
-          <a
-            href="#"
-            className="text-white font-semibold italic hover:text-slate-200 transition"
+          </span>
+          <span onClick={()=>navigate('/posts')}
+            className="text-white cursor-pointer font-semibold italic hover:text-slate-200 transition"
           >
             Blogs
-          </a>
-          <a
-            href="#"
-            className="text-white font-semibold italic hover:text-slate-200 transition"
+          </span>
+          <span onClick={()=>navigate('/about')}
+            className="text-white cursor-pointer font-semibold italic hover:text-slate-200 transition"
           >
             About
-          </a>
-          <a
-            href="#"
-            className="text-white font-semibold italic hover:text-slate-200 transition"
+          </span>
+          <span onClick={()=>navigate('/contact')}
+            className="text-white cursor-pointer font-semibold italic hover:text-slate-200 transition"
           >
             Contact
-          </a>
+          </span>
         </nav>
 
         {/* Right Side */}

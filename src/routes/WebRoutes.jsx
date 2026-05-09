@@ -1,12 +1,12 @@
 import React from 'react'
 import { Route, Routes } from 'react-router-dom'
 import Home from '../site/pages/home/Home'
-import {Posts} from '../site/pages/Posts'
 import About from '../site/pages/About'
 import Contact from '../site/pages/Contact'
 import SinglePost from '../site/pages/SinglePost'
 import Signup from '../auth/Signup';
-import {Login} from "../auth/Login"
+import {Login} from "../auth/Login";
+import Posts from '../site/pages/posts/Posts'
 
 function WebRoutes() {
   return (
