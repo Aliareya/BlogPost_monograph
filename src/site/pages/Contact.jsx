@@ -1,204 +1,148 @@
-import React, { useState } from 'react';
+import { Icon } from "@iconify/react";
+import p1 from "../../assets/images/p1.jpg"
 
-
-// Contact Header Component
-const ContactHeader = () => {
-  return (
-    <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-      <h1 className="text-4xl md:text-5xl font-serif font-bold text-gray-900 mb-4">
-        Get in Touch
-      </h1>
-      <p className="text-lg text-gray-600 leading-relaxed">
-        Have a question, feedback, or want to collaborate? Drop us a message.
-      </p>
-    </div>
-  );
-};
-
-// Contact Form Component
-const ContactForm = () => {
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    subject: '',
-    message: ''
-  });
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // Handle form submission
-    console.log(formData);
-  };
-
-  return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-2xl p-8 border border-gray-100">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
-            Name
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            placeholder="Your name"
-            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-            required
-          />
-        </div>
-
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-900 mb-2">
-            Email
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleChange}
-            placeholder="you@example.com"
-            className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-            required
-          />
-        </div>
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="subject" className="block text-sm font-medium text-gray-900 mb-2">
-          Subject
-        </label>
-        <input
-          type="text"
-          id="subject"
-          name="subject"
-          value={formData.subject}
-          onChange={handleChange}
-          placeholder="What's this about?"
-          className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all"
-          required
-        />
-      </div>
-
-      <div className="mb-6">
-        <label htmlFor="message" className="block text-sm font-medium text-gray-900 mb-2">
-          Message
-        </label>
-        <textarea
-          id="message"
-          name="message"
-          value={formData.message}
-          onChange={handleChange}
-          placeholder="Tell us more..."
-          rows="6"
-          className="w-full px-4 py-3 rounded-lg border border-gray-200 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-transparent transition-all resize-none"
-          required
-        />
-      </div>
-
-      <button
-        type="submit"
-        className="bg-orange-500 hover:bg-orange-600 text-white px-8 py-3 rounded-full font-medium flex items-center gap-2 transition-colors"
-      >
-        <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
-        </svg>
-        Send Message
-      </button>
-    </form>
-  );
-};
-
-// Contact Info Card Component
-const ContactInfoCard = ({ icon, title, value }) => {
-  return (
-    <div className="bg-white rounded-2xl p-6 border border-gray-100 flex items-start gap-4">
-      <div className="w-12 h-12 bg-orange-50 rounded-xl flex items-center justify-center flex-shrink-0">
-        {icon}
-      </div>
-      <div>
-        <h3 className="font-semibold text-gray-900 mb-1">{title}</h3>
-        <p className="text-gray-600">{value}</p>
-      </div>
-    </div>
-  );
-};
-
-// Contact Info Section Component
-const ContactInfo = () => {
-  const infoItems = [
+export default function Contact() {
+  const contactInfo = [
     {
-      icon: (
-        <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-        </svg>
-      ),
-      title: 'Email',
-      value: 'hello@inkwell.blog'
+      icon: "solar:letter-bold",
+      title: "Email Us",
+      value: "hello@areyapulse.com",
+      desc: "Send us your questions anytime.",
     },
     {
-      icon: (
-        <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-        </svg>
-      ),
-      title: 'Location',
-      value: 'San Francisco, CA'
+      icon: "solar:phone-calling-bold",
+      title: "Call Us",
+      value: "+1 (000) 123-4567",
+      desc: "Available Monday to Friday.",
     },
     {
-      icon: (
-        <svg className="w-6 h-6 text-orange-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-      ),
-      title: 'Response Time',
-      value: 'Within 24 hours'
-    }
+      icon: "solar:map-point-bold",
+      title: "Visit Us",
+      value: "Montreal, Canada",
+      desc: "Come say hello at our office.",
+    },
   ];
 
   return (
-    <div className="space-y-4">
-      {infoItems.map((item, index) => (
-        <ContactInfoCard
-          key={index}
-          icon={item.icon}
-          title={item.title}
-          value={item.value}
-        />
-      ))}
-    </div>
-  );
-};
+    <main className="min-h-screen bg-[linear-gradient(53deg,_#214252_0%,_#2E5666_35%,_#4A6B78_65%,_#D1D5DB_89%,_#F5F6F7_100%)]">
+      {/* Hero */}
+      <section className="py-10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 text-center">
+          <span className="px-5 py-2 rounded-full bg-white/20 text-white border border-white/20 text-sm">
+            Contact Us
+          </span>
 
-// Main Contact Component
-const Contact = () => {
-  return (
-    <div className="min-h-screen bg-gray-50">
-      <ContactHeader />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pb-16">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          <div className="lg:col-span-2">
-            <ContactForm />
+          <h1 className="mt-6 text-5xl md:text-6xl font-bold text-white">
+            Let’s Connect
+          </h1>
+
+          <p className="mt-6 text-lg text-slate-100 max-w-2xl mx-auto leading-8">
+            Have questions, ideas, or feedback? We'd love to hear from you.
+            Reach out and our team will get back to you soon.
+          </p>
+        </div>
+      </section>
+
+      {/* Contact cards */}
+      <section className="pb-14 ">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid md:grid-cols-3 gap-7">
+          {contactInfo.map((item, index) => (
+            <div
+              key={index}
+              className="bg-[linear-gradient(53deg,_#214252_0%,_#2E5666_35%,_#4A6B78_65%,_#D1D5DB_89%,_#F5F6F7_100%)] backdrop-blur-xl border border-white/30 rounded-[28px] p-8 shadow-xl text-center hover:-translate-y-2 transition"
+            >
+              <div className="mx-auto w-16 h-16 rounded-2xl bg-[linear-gradient(135deg,_#214252_0%,_#2E5666_35%,_#4A6B78_65%,_#D1D5DB_100%)] flex items-center justify-center">
+                <Icon icon={item.icon} width="28" className="text-white" />
+              </div>
+
+              <h3 className="mt-6 text-2xl font-bold text-gray-100">
+                {item.title}
+              </h3>
+
+              <p className="mt-3 font-medium text-slate-200">
+                {item.value}
+              </p>
+
+              <p className="mt-2 text-slate-200">
+                {item.desc}
+              </p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* Contact form + map */}
+      <section className="pb-24 ">
+        <div className="max-w-7xl mx-auto px-6 lg:px-10 grid lg:grid-cols-2 gap-10">
+          
+          {/* Form */}
+          <div className="bg-[linear-gradient(53deg,_#214252_0%,_#2E5666_35%,_#4A6B78_65%,_#D1D5DB_89%,_#F5F6F7_100%)] backdrop-blur-xl border border-white/30 rounded-[32px] p-8 md:p-10 shadow-2xl">
+            <h2 className="text-3xl font-bold text-gray-100">
+              Send a Message
+            </h2>
+
+            <p className="mt-3 text-slate-200 leading-7">
+              Fill out the form below and we’ll respond as soon as possible.
+            </p>
+
+            <div className="mt-8 space-y-5">
+              <input
+                type="text"
+                placeholder="Your Name"
+                className="w-full h-14 px-5 rounded-xl border border-slate-200 outline-none focus:border-[#214252]"
+              />
+
+              <input
+                type="email"
+                placeholder="Your Email"
+                className="w-full h-14 px-5 rounded-xl border border-slate-200 outline-none focus:border-[#214252]"
+              />
+
+              <input
+                type="text"
+                placeholder="Subject"
+                className="w-full h-14 px-5 rounded-xl border border-slate-200 outline-none focus:border-[#214252]"
+              />
+
+              <textarea
+                rows="6"
+                placeholder="Write your message..."
+                className="w-full p-5 rounded-xl border border-slate-200 outline-none focus:border-[#214252] resize-none"
+              ></textarea>
+
+              <button className="w-full h-14 rounded-xl bg-[#214252] text-white font-semibold hover:scale-[1.02] transition">
+                Send Message
+              </button>
+            </div>
           </div>
-          <div className="lg:col-span-1">
-            <ContactInfo />
+
+          {/* Map / Info card */}
+          <div className="bg-[linear-gradient(53deg,_#214252_0%,_#2E5666_35%,_#4A6B78_65%,_#D1D5DB_89%,_#F5F6F7_100%)]  backdrop-blur-xl border border-white/30 rounded-[32px] p-6 shadow-2xl">
+            <div className="w-full h-full min-h-[620px] rounded-[28px] overflow-hidden relative">
+              <img
+                src={p1}
+                alt=""
+                className="w-full h-full object-cover"
+              />
+
+              <div className="absolute bottom-6 left-6 right-6 bg-white/90 backdrop-blur-lg rounded-3xl p-6 shadow-lg">
+                <h3 className="text-2xl font-bold text-[#214252]">
+                  Our Office
+                </h3>
+
+                <p className="mt-3 text-slate-600 leading-7">
+                  Visit our creative workspace where ideas become stories.
+                </p>
+
+                <div className="mt-5 flex items-center gap-2 text-[#214252] font-medium">
+                  <Icon icon="solar:map-point-bold" width="20" />
+                  Montreal, Canada
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      
-    </div>
+      </section>
+    </main>
   );
-};
-
-export default Contact;
+}
