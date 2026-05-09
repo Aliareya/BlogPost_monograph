@@ -74,10 +74,10 @@ const CreatePost = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4">
-      <div className="bg-white w-full max-w-2xl p-6 rounded-2xl shadow">
+    <div className=" py-10 bg-[linear-gradient(74deg,_#214252_0%,_#2E5666_35%,_#4A6B78_78%,_#D1D5DB_108%,_#F5F6F7_100%)] pl-72 flex items-center justify-center px-4">
+      <div className="bg-[linear-gradient(-74deg,_#214252_0%,_#2E5666_35%,_#4A6B78_78%,_#D1D5DB_108%,_#F5F6F7_100%)] w-full  p-6 rounded-2xl shadow">
 
-        <h1 className="text-2xl font-bold mb-6">Create New Post</h1>
+        <h1 className="text-2xl text-gray-100 font-bold mb-6">Create New Post</h1>
 
         {success && (
           <p className="text-green-600 mb-4">
@@ -144,7 +144,7 @@ const CreatePost = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-black text-white py-3 rounded hover:bg-gray-800"
+            className="w-full bg-[linear-gradient(74deg,_#214252_0%,_#2E5666_35%,_#4A6B78_78%,_#D1D5DB_108%,_#F5F6F7_100%)] text-white py-3 rounded hover:bg-gray-800"
           >
             {loading ? "Creating..." : "Create Post"}
           </button>

@@ -1,7 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { collection, getDocs, query, orderBy } from "firebase/firestore";
+import {
+  collection,
+  getDocs,
+  query,
+  orderBy,
+} from "firebase/firestore";
 import { db } from "../../../config/Firebase";
 import { useNavigate } from "react-router-dom";
+import { Icon } from "@iconify/react";
 
 /* =========================
    PAGE HEADER
@@ -11,27 +17,15 @@ const PageHeader = ({ postssize }) => {
 
   return (
     <div className="flex items-center justify-between mb-8">
-      <h1 className="text-3xl font-serif font-bold text-gray-900">Posts</h1>
+      <h1 className="text-3xl font-bold text-white">Posts</h1>
 
       <button
         onClick={() =>
           navigate(`/admin/posts/create?postssize=${postssize}`)
         }
-        className="bg-orange-500 hover:bg-orange-600 text-white px-6 py-3 rounded-full font-medium flex items-center gap-2 transition-colors"
+        className="bg-[#214252] hover:opacity-90 text-white px-6 py-3 rounded-xl font-medium flex items-center gap-2 transition"
       >
-        <svg
-          className="w-5 h-5"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 4v16m8-8H4"
-          />
-        </svg>
+        <Icon icon="solar:add-square-bold" width="20" />
         New Post
       </button>
     </div>
@@ -43,12 +37,12 @@ const PageHeader = ({ postssize }) => {
 ========================= */
 const TableHeader = () => {
   return (
-    <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-gray-50 border-b border-gray-200 text-sm font-semibold text-gray-600">
+    <div className="grid grid-cols-12 gap-4 px-6 py-4 bg-white/10 backdrop-blur-xl border-b border-white/10 text-sm font-semibold text-white">
       <div className="col-span-3">Title</div>
       <div className="col-span-2">Category</div>
       <div className="col-span-2">Likes</div>
       <div className="col-span-2">Date</div>
-      <div className="col-span-2 text-right">Actions</div>
+      <div className="col-span-3 text-right">Actions</div>
     </div>
   );
 };
@@ -58,32 +52,49 @@ const TableHeader = () => {
 ========================= */
 const PostRow = ({ title, category, likes, date }) => {
   return (
-    <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-gray-100 items-center hover:bg-gray-50 transition-colors">
+    <div className="grid grid-cols-12 gap-4 px-6 py-4 border-b border-white/10 items-center text-white/90 hover:bg-white/5 transition">
 
-      <div className="col-span-3">
-        <span className="font-medium text-gray-900">{title}</span>
+      {/* Title */}
+      <div className="col-span-3 font-medium">
+        {title}
       </div>
 
+      {/* Category */}
       <div className="col-span-2">
-        <span className="inline-flex px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-700">
+        <span className="inline-flex px-3 py-1 rounded-full text-xs font-medium bg-white/10">
           {category}
         </span>
       </div>
 
-      <div className="col-span-2 text-sm text-gray-700">
+      {/* Likes */}
+      <div className="col-span-2 text-sm">
         {likes || 0}
       </div>
 
-      <div className="col-span-2 text-sm text-gray-600">
+      {/* Date */}
+      <div className="col-span-2 text-sm">
         {date}
       </div>
 
-      <div className="col-span-2 flex items-center justify-end gap-2">
-        <button className="p-2 text-gray-400 hover:text-gray-600">👁</button>
-        <button className="p-2 text-gray-400 hover:text-blue-600">✏️</button>
-        <button className="p-2 text-gray-400 hover:text-red-600">🗑</button>
-      </div>
+      {/* Actions */}
+      <div className="col-span-3 flex items-center justify-end gap-2">
 
+        {/* View */}
+        <button className="p-2 rounded-lg hover:bg-white/10 transition">
+          <Icon icon="solar:eye-bold" width="20" className="text-white" />
+        </button>
+
+        {/* Edit */}
+        <button className="p-2 rounded-lg hover:bg-white/10 transition">
+          <Icon icon="solar:pen-2-bold" width="20" className="text-blue-300" />
+        </button>
+
+        {/* Delete */}
+        <button className="p-2 rounded-lg hover:bg-white/10 transition">
+          <Icon icon="solar:trash-bin-trash-bold" width="20" className="text-red-400" />
+        </button>
+
+      </div>
     </div>
   );
 };
@@ -122,10 +133,7 @@ const PostsTable = ({ setPostsCount }) => {
         });
 
         setPosts(data);
-
-        // 👇 send length to parent
         setPostsCount(data.length);
-
       } catch (error) {
         console.error("Error fetching posts:", error);
       } finally {
@@ -137,16 +145,22 @@ const PostsTable = ({ setPostsCount }) => {
   }, []);
 
   if (loading) {
-    return <div className="p-6 text-gray-500">Loading posts...</div>;
+    return (
+      <div className="p-6 text-white/70">
+        Loading posts...
+      </div>
+    );
   }
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+    <div className="rounded-2xl overflow-hidden border border-white/10 bg-white/5 backdrop-blur-xl">
       <TableHeader />
 
-      <div className="divide-y divide-gray-100">
+      <div className="divide-y divide-white/10">
         {posts.length === 0 ? (
-          <div className="p-6 text-gray-500">No posts found</div>
+          <div className="p-6 text-white/60">
+            No posts found
+          </div>
         ) : (
           posts.map((post) => (
             <PostRow key={post.id} {...post} />
@@ -164,19 +178,21 @@ const Posts = () => {
   const [postsCount, setPostsCount] = useState(0);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <main className="ml-64">
-        <div className="p-8">
-          <div className="mb-2 text-sm text-gray-600 font-medium">
-            Dashboard
-          </div>
+    <div className="min-h-screen bg-[linear-gradient(74deg,_#214252_0%,_#2E5666_35%,_#4A6B78_78%,_#D1D5DB_108%,_#F5F6F7_100%)]">
 
-          {/* 👇 pass count here */}
-          <PageHeader postssize={postsCount} />
+      <main className="ml-64 p-8">
 
-          {/* 👇 update count from here */}
-          <PostsTable setPostsCount={setPostsCount} />
+        {/* Breadcrumb */}
+        <div className="mb-2 text-sm text-white/60">
+          Dashboard / Posts
         </div>
+
+        {/* Header */}
+        <PageHeader postssize={postsCount} />
+
+        {/* Table */}
+        <PostsTable setPostsCount={setPostsCount} />
+
       </main>
     </div>
   );

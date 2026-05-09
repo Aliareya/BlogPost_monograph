@@ -14,13 +14,13 @@ const StatCard = ({ icon, number, label, sublabel, color }) => {
   };
 
   return (
-    <div className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
+    <div className="bg-[linear-gradient(46deg,_#214252_0%,_#2E5666_35%,_#4A6B78_82%,_#D1D5DB_83%,_#F5F6F7_100%)] rounded-xl p-6 border border-gray-100 hover:shadow-lg transition-shadow">
       <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${colorClasses[color]}`}>
         {icon}
       </div>
-      <div className="text-3xl font-bold text-gray-900 mb-1">{number}</div>
-      <div className="text-sm text-gray-600">{label}</div>
-      <div className="text-xs text-gray-400 mt-1">{sublabel}</div>
+      <div className="text-3xl font-bold text-gray-100 mb-1">{number}</div>
+      <div className="text-sm text-gray-200">{label}</div>
+      <div className="text-xs text-gray-300 mt-1">{sublabel}</div>
     </div>
   );
 };
@@ -97,10 +97,10 @@ const StatsGrid = () => {
 // Post Row Component
 const PostRow = ({ title, status, category, likes }) => {
   return (
-    <div className="bg-white rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow flex items-center justify-between">
+    <div className="bg-[linear-gradient(85deg,_#214252_0%,_#2E5666_35%,_#4A6B78_48%,_#D1D5DB_99%,_#F5F6F7_100%)] rounded-xl p-6 border border-gray-100 hover:shadow-md transition-shadow flex items-center justify-between">
       <div className="flex-1">
-        <h3 className="font-semibold text-gray-900 mb-1">{title}</h3>
-        <p className="text-sm text-gray-500">
+        <h3 className="font-semibold text-gray-100 mb-1">{title}</h3>
+        <p className="text-sm text-gray-300">
           {status} · {category}
         </p>
       </div>
@@ -145,7 +145,7 @@ const RecentPosts = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-serif font-bold text-gray-900 mb-6">Recent Posts</h2>
+      <h2 className=" text-2xl font-serif font-bold text-gray-300 mb-6">Recent Posts</h2>
       <div className="space-y-4">
         {posts.map((post, index) => (
           <PostRow key={index} {...post} />
@@ -158,14 +158,14 @@ const RecentPosts = () => {
 // Main Dashboard Component
 const Dashboard = () => {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-[linear-gradient(-150deg,_#214252_0%,_#2E5666_35%,_#4A6B78_48%,_#D1D5DB_99%,_#F5F6F7_100%)]">
       {/* <Sidebar /> */}
-      
+
       <main className="ml-64">
         <div className="p-8">
-          <div className="mb-2 text-sm text-gray-600 font-medium">Dashboard</div>
-          <h1 className="text-3xl font-serif font-bold text-gray-900 mb-8">Overview</h1>
-          
+          <div className="mb-2 text-sm text-gray-100 font-medium">Dashboard</div>
+          <h1 className="text-3xl font-serif font-bold text-gray-200 mb-8">Overview</h1>
+
           <StatsGrid />
           <RecentPosts />
         </div>
