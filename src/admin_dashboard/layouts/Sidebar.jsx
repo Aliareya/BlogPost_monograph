@@ -21,11 +21,6 @@ export const Sidebar = () => {
       name: "Comments",
       icon: "solar:chat-round-dots-bold",
     },
-    {
-      path: "/admin/messages",
-      name: "Messages",
-      icon: "solar:letter-bold",
-    },
   ];
 
   return (

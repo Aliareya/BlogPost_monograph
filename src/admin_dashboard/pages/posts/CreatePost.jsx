@@ -3,12 +3,13 @@ import { collection, addDoc, serverTimestamp } from "firebase/firestore";
 import { db } from "../../../config/Firebase";
 import useAuthStore from "../../../store/AuthStore";
 import { toast } from "react-toastify";
-import { useSearchParams } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 /* =========================
    CREATE POST PAGE
 ========================= */
 const CreatePost = () => {
+  const navigate = useNavigate()
   const [searchParams] = useSearchParams();
   const postsSize = searchParams.get("postssize");
   const newId = Number(postsSize) + 1;
@@ -65,6 +66,8 @@ const CreatePost = () => {
         category: "programing",
         image: "",
       });
+
+      navigate('/admin/posts')
 
     } catch (error) {
       console.error("Error creating post:", error);

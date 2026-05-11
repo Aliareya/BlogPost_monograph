@@ -61,16 +61,16 @@ const SinglePost = () => {
 
       {/* POST MAIN */}
       <div className="max-w-6xl mx-auto ">
-        <div className="bg-[linear-gradient(-85deg,_#214252_0%,_#2E5666_35%,_#4A6B78_48%,_#D1D5DB_99%,_#F5F6F7_100%)] backdrop-blur-xl border border-white/30 rounded-[32px] shadow-2xl p-6 md:p-10">
+        <div className="bg-[linear-gradient(-85deg,_#214252_0%,_#2E5666_35%,_#4A6B78_99%,_#D1D5DB_99%,_#F5F6F7_100%)] backdrop-blur-xl border border-white/30 rounded-[32px] shadow-2xl p-6 md:p-10">
           
-          <div className="grid md:grid-cols-2 gap-10 items-start">
+          <div className="grid md:grid-cols-1 gap-10 items-start">
             
             {/* LEFT IMAGE */}
             <div className="rounded-[24px] overflow-hidden shadow-lg">
               <img
-                src="https://images.unsplash.com/photo-1499951360447-b19be8fe80f5?w=1200"
+                src={post?.image}
                 alt=""
-                className="w-full h-[300px] md:h-[450px] object-cover"
+                className="w-full h-[300px] md:h-[300px] object-cover"
               />
             </div>
 
@@ -84,7 +84,7 @@ const SinglePost = () => {
                 {post?.title}
               </h1>
 
-              <p className="mt-6 text-slate-300 leading-8">
+              <p className="mt-6 text-slate-500 leading-8">
                 {post?.content}
               </p>
 
